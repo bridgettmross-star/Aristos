@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { printCount, type Collection } from "@/lib/prints";
+import type { Collection } from "@/lib/prints";
 
 // The collection name sits over the photo and fades in on hover or keyboard focus.
 // Devices without hover (phones, tablets) show it all the time.
@@ -23,11 +23,8 @@ export function CollectionCard({ collection }: { collection: Collection }) {
           [Collection cover photo]
         </span>
       )}
-      <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/40 p-6 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none [@media(hover:none)]:opacity-100">
+      <span className="absolute inset-0 flex items-center justify-center bg-black/40 p-6 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none [@media(hover:none)]:opacity-100">
         <span className="font-playfair text-[32px] font-medium leading-tight">{collection.name}</span>
-        <span className="text-sm text-white/85">
-          {collection.place} · {printCount(collection.slug)}
-        </span>
       </span>
     </Link>
   );

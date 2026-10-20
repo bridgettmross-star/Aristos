@@ -40,9 +40,6 @@ export default async function CollectionPage({ params }: PageProps<"/collections
             </span>
           </nav>
           <div className="flex max-w-[640px] flex-col gap-4">
-            <span className="text-[13px] font-medium uppercase tracking-[0.14em] text-ink-muted">
-              {collection.place}
-            </span>
             <h1 className="m-0 font-playfair text-5xl font-medium leading-[1.1] sm:text-[56px]">
               {collection.name}
             </h1>

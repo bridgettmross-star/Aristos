@@ -5,7 +5,6 @@ export type Photo = { src: string; alt: string };
 export type Collection = {
   slug: string;
   name: string;
-  place: string;
   description: string;
   cover?: Photo;
 };
@@ -27,7 +26,6 @@ export const collections: Collection[] = [
   {
     slug: "riviera",
     name: "Riviera",
-    place: "French Riviera",
     description: "[A sentence about this collection — where you shot it and what ties the prints together]",
     cover: {
       src: "/images/paloma.jpg",
@@ -37,13 +35,11 @@ export const collections: Collection[] = [
   {
     slug: "paname",
     name: "Paname",
-    place: "Paris",
     description: "[A sentence about this collection]",
   },
   {
     slug: "balear",
     name: "Balear",
-    place: "Majorca",
     description: "[A sentence about this collection]",
   },
 ];
@@ -97,12 +93,6 @@ export function getCollection(slug: string) {
 
 export function printsIn(collectionSlug: string) {
   return prints.filter((print) => print.collection === collectionSlug);
-}
-
-export function printCount(collectionSlug: string) {
-  const count = printsIn(collectionSlug).length;
-  if (count === 0) return "Coming soon";
-  return count === 1 ? "1 print" : `${count} prints`;
 }
 
 export const shopHref = "/shop";

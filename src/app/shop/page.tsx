@@ -43,10 +43,7 @@ export default function ShopPage() {
             return (
               <div key={collection.slug} id={collection.slug} className="flex flex-col gap-6">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-                  <h3 className="m-0 flex flex-wrap items-baseline gap-x-3 font-playfair text-[28px] font-medium">
-                    {collection.name}
-                    <span className="font-inter text-sm font-normal text-ink-muted">{collection.place}</span>
-                  </h3>
+                  <h3 className="m-0 font-playfair text-[28px] font-medium">{collection.name}</h3>
                   <Link
                     href={`/collections/${collection.slug}`}
                     className="text-[15px] text-ink hover:text-ink-muted"
