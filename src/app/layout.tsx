@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Cormorant_Garamond, Inter, Jost } from "next/font/google";
+import { Archivo, Cormorant_Garamond, Inter, Jost, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -27,6 +27,12 @@ const jost = Jost({
   weight: ["300", "400", "500"],
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
+
 export const metadata: Metadata = {
   title: "Aristos",
   description: "Fine art photographic prints by Aristos.",
@@ -36,7 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${inter.variable} ${cormorant.variable} ${jost.variable} antialiased`}
+      className={`${archivo.variable} ${inter.variable} ${cormorant.variable} ${jost.variable} ${playfair.variable} antialiased`}
     >
       <body className="m-0">{children}</body>
     </html>

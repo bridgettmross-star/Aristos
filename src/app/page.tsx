@@ -40,7 +40,7 @@ export default function Home() {
       <header className={`${container} flex flex-wrap items-center justify-between gap-5 py-7`}>
         <Link
           href="/"
-          className="font-archivo text-[22px] font-semibold tracking-[0.32em] text-ink no-underline"
+          className="font-playfair text-[22px] font-semibold tracking-[0.32em] text-ink no-underline"
         >
           ARISTOS
         </Link>
@@ -215,7 +215,7 @@ export default function Home() {
         <div
           className={`${container} flex flex-wrap justify-between gap-8 py-12 text-sm text-ink-muted`}
         >
-          <span className="font-archivo text-base font-semibold tracking-[0.32em] text-ink">
+          <span className="font-playfair text-base font-semibold tracking-[0.32em] text-ink">
             ARISTOS
           </span>
           <nav aria-label="Footer" className="flex flex-wrap gap-7">

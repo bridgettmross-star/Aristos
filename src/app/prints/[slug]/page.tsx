@@ -59,7 +59,7 @@ export default async function PrintPage({ params }: PageProps<"/prints/[slug]">)
         </nav>
         <Link
           href="/"
-          className={`${navLink} pl-[0.42em] font-cormorant text-[30px] font-normal tracking-[0.42em]`}
+          className={`${navLink} pl-[0.42em] font-playfair text-[30px] font-normal tracking-[0.42em]`}
         >
           ARISTOS
         </Link>
@@ -195,7 +195,7 @@ export default async function PrintPage({ params }: PageProps<"/prints/[slug]">)
       </section>
 
       <footer className={`${container} flex flex-col items-center gap-9 pb-16`}>
-        <span className="pl-[0.42em] font-cormorant text-[44px] font-light tracking-[0.42em]">
+        <span className="pl-[0.42em] font-playfair text-[44px] font-normal tracking-[0.42em]">
           ARISTOS
         </span>
         <nav
