@@ -16,6 +16,6 @@ Then open http://localhost:3000.
 
 ## Content to replace
 
-- Photos: `public/images/hero.jpg` and `public/images/paloma.jpg` are placeholders.
+- Photos: `public/images/hero.webp` is the home page hero; `public/images/paloma.jpg` is still a placeholder.
 - Bracketed text such as `[YOUR PRICE]` and `[YOUR ABN]` marks copy still to be written.
 - Prints and their size, paper and framing options live in `src/lib/prints.ts`.

@@ -44,7 +44,7 @@ export default function Home() {
         >
           ARISTOS
         </Link>
-        <nav aria-label="Main" className="flex flex-wrap items-center gap-8 text-[15px]">
+        <nav aria-label="Main" className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[15px] sm:gap-8">
           <Link href={featuredPrintHref} className="text-ink no-underline hover:text-ink-muted">
             Shop prints
           </Link>
@@ -70,15 +70,20 @@ export default function Home() {
       <section className={container}>
         <div className="relative isolate box-border flex h-[560px] flex-col justify-end p-8 sm:h-[680px] sm:p-14">
           <Image
-            src="/images/hero.jpg"
-            alt=""
+            src="/images/hero.webp"
+            alt="A cream villa above a turquoise cove on the Riviera, with a cliffside tennis court"
             fill
             preload
             sizes="(min-width: 1360px) 1280px, 100vw"
-            className="-z-10 object-cover"
+            className="-z-10 object-cover object-[center_12%]"
+          />
+          {/* Darkens the bottom of the photo so the white headline stays readable */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 bg-linear-to-t from-black/55 via-black/15 to-transparent"
           />
           <div className="flex max-w-[640px] flex-col gap-5">
-            <h1 className="m-0 font-archivo text-[56px] font-medium leading-[1.05] text-white">
+            <h1 className="m-0 whitespace-nowrap font-archivo text-[34px] font-medium leading-[1.05] text-white sm:text-[56px]">
               A R I S T O S
             </h1>
             <p className="m-0 text-lg leading-normal text-hero-copy">
