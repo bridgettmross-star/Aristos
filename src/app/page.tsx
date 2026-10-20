@@ -5,7 +5,7 @@ import { Placeholder } from "@/components/placeholder";
 import { PrintCard } from "@/components/print-card";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader, container } from "@/components/site-header";
-import { collections, prints, shopHref } from "@/lib/prints";
+import { collections, collectionsHref, prints, shopHref } from "@/lib/prints";
 
 const sectionHeading = "m-0 font-playfair text-4xl font-medium";
 const textLink = "text-[15px] text-ink hover:text-ink-muted";
@@ -61,12 +61,12 @@ export default function Home() {
               >
                 Shop prints
               </Link>
-              <a
-                href="#collections"
+              <Link
+                href={collectionsHref}
                 className="inline-flex min-h-12 items-center border border-white px-7 text-[15px] font-medium text-white no-underline"
               >
                 View collections
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function Home() {
       <section id="collections" className={`${container} flex flex-col gap-10 pt-30`}>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <h2 className={sectionHeading}>Collections</h2>
-          <Link href={shopHref} className={textLink}>
+          <Link href={collectionsHref} className={textLink}>
             All collections
           </Link>
         </div>

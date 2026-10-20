@@ -334,3 +334,4 @@ export function startingPrice(print: Print) {
 }
 
 export const shopHref = "/shop";
+export const collectionsHref = "/collections";

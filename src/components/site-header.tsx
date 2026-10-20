@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CartIcon } from "@/components/cart-icon";
-import { shopHref } from "@/lib/prints";
+import { collectionsHref, shopHref } from "@/lib/prints";
 
 export const container = "mx-auto box-border max-w-[1360px] px-5 sm:px-10";
 
@@ -19,7 +19,7 @@ export function SiteHeader() {
         <Link href={shopHref} className={navLink}>
           Shop prints
         </Link>
-        <Link href={shopHref} className={navLink}>
+        <Link href={collectionsHref} className={navLink}>
           Collections
         </Link>
         <Link href="/#about" className={navLink}>
