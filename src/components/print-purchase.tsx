@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Option, Print } from "@/lib/prints";
+import { formatPrice, type Option, type Print } from "@/lib/prints";
 
 type Selection = { size: string; paper: string; frame: string };
 
@@ -63,6 +63,7 @@ export function PrintPurchase({ print }: { print: Print }) {
   }
 
   const size = labelFor(print.sizes, selection.size);
+  const price = print.sizes.find((option) => option.id === selection.size)?.price;
   const summary = [
     size,
     labelFor(print.papers, selection.paper),
@@ -78,11 +79,12 @@ export function PrintPurchase({ print }: { print: Print }) {
         <h1 className="m-0 font-playfair text-5xl font-medium leading-[1.05] sm:text-[64px]">
           {print.title}
         </h1>
-        {/* TODO: replace with real pricing per size */}
-        <p className="m-0 font-playfair text-[26px]">[PRICE for {size}]</p>
+        <p className="m-0 font-playfair text-[26px]">
+          {price === undefined ? `[PRICE for ${size}]` : formatPrice(price)}
+        </p>
         <p className="m-0 text-[17px] leading-[1.65] text-ink-body">
           [Two or three sentences on the moment behind this photograph — the time of day, the light,
-          why this cove.]
+          why this place.]
         </p>
         <span className="text-[13px] text-ink-muted">Edition of [NUMBER] · Signed &amp; numbered</span>
       </div>

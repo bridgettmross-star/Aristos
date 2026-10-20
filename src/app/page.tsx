@@ -2,14 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { CollectionCard } from "@/components/collection-card";
 import { Placeholder } from "@/components/placeholder";
+import { PrintCard } from "@/components/print-card";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader, container } from "@/components/site-header";
-import { collections, featuredPrintHref, shopHref } from "@/lib/prints";
+import { collections, prints, shopHref } from "@/lib/prints";
 
 const sectionHeading = "m-0 font-playfair text-4xl font-medium";
 const textLink = "text-[15px] text-ink hover:text-ink-muted";
-
-const newPrints = [1, 2, 3, 4];
 
 const promises = [
   {
@@ -95,14 +94,8 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(240px,100%),1fr))] gap-6">
-          {newPrints.map((id) => (
-            <Link key={id} href={featuredPrintHref} className="flex flex-col gap-3.5 text-ink no-underline">
-              <Placeholder label="[Print photo]" className="aspect-[4/5]" />
-              <div className="flex flex-col gap-1">
-                <span className="text-base font-medium">[Print title]</span>
-                <span className="text-sm text-ink-muted">From [YOUR PRICE]</span>
-              </div>
-            </Link>
+          {prints.map((print) => (
+            <PrintCard key={print.slug} print={print} />
           ))}
         </div>
       </section>

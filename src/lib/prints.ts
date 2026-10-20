@@ -1,13 +1,16 @@
 export type Option = { id: string; label: string };
 
-export type Photo = { src: string; alt: string };
+// price is in Australian dollars; leave it out until it's decided
+export type SizeOption = Option & { price?: number };
+
+// position: which part of the photo stays in view when it's cropped (CSS object-position)
+export type Photo = { src: string; alt: string; position?: string };
 
 export type Collection = {
   slug: string;
   name: string;
   description: string;
-  // position: which part of a wide photo stays in the portrait card (CSS object-position)
-  cover?: Photo & { position?: string };
+  cover?: Photo;
 };
 
 export type Print = {
@@ -15,9 +18,10 @@ export type Print = {
   title: string;
   location: string;
   collection: string;
-  image: Photo;
-  details: (Photo & { position: string })[];
-  sizes: Option[];
+  // width and height keep the main image in its original proportions
+  image: Photo & { width: number; height: number };
+  details: Photo[];
+  sizes: SizeOption[];
   papers: Option[];
   frames: Option[];
 };
@@ -54,6 +58,23 @@ export const collections: Collection[] = [
   },
 ];
 
+const sizes: SizeOption[] = [
+  { id: "s", label: "45 × 60 cm", price: 300 },
+  { id: "m", label: "60 × 80 cm" },
+  { id: "l", label: "90 × 120 cm" },
+];
+
+const papers: Option[] = [
+  { id: "rag", label: "Cotton rag, matte" },
+  { id: "baryta", label: "Baryta, satin" },
+];
+
+const frames: Option[] = [
+  { id: "none", label: "Unframed" },
+  { id: "black", label: "Black, white mat" },
+  { id: "oak", label: "Oak, white mat" },
+];
+
 export const prints: Print[] = [
   {
     slug: "paloma",
@@ -61,35 +82,81 @@ export const prints: Print[] = [
     location: "Saint-Jean-Cap-Ferrat, France",
     collection: "riviera",
     image: {
-      src: "/images/paloma.jpg",
-      alt: "Paloma: a pink villa among cypress trees above a turquoise cove and beach",
+      src: "/images/riviera.webp",
+      alt: "Paloma: a villa among cypress trees above a busy beach and turquoise cove",
+      width: 992,
+      height: 1403,
     },
     details: [
       {
-        src: "/images/paloma.jpg",
+        src: "/images/riviera.webp",
         alt: "Detail: the villa and its arched loggia",
-        position: "72% 38%",
+        position: "72% 42%",
       },
       {
-        src: "/images/paloma.jpg",
+        src: "/images/riviera.webp",
         alt: "Detail: swimmers and paddleboarders in the cove",
-        position: "8% 92%",
+        position: "8% 90%",
       },
     ],
-    sizes: [
-      { id: "s", label: "45 × 60 cm" },
-      { id: "m", label: "60 × 80 cm" },
-      { id: "l", label: "90 × 120 cm" },
+    sizes,
+    papers,
+    frames,
+  },
+  {
+    slug: "toits",
+    title: "Toits",
+    location: "Paris, France",
+    collection: "paname",
+    image: {
+      src: "/images/paname.webp",
+      alt: "Toits: the Eiffel Tower rising above grey Paris rooftops and chimney pots",
+      width: 2000,
+      height: 1415,
+      position: "86% center",
+    },
+    details: [
+      {
+        src: "/images/paname.webp",
+        alt: "Detail: the Eiffel Tower in the haze",
+        position: "66% center",
+      },
+      {
+        src: "/images/paname.webp",
+        alt: "Detail: the gilded dome of Les Invalides above the rooftops",
+        position: "8% center",
+      },
     ],
-    papers: [
-      { id: "rag", label: "Cotton rag, matte" },
-      { id: "baryta", label: "Baryta, satin" },
+    sizes,
+    papers,
+    frames,
+  },
+  {
+    slug: "cova",
+    title: "Cova",
+    location: "Majorca, Spain",
+    collection: "balear",
+    image: {
+      src: "/images/balear-boats.webp",
+      alt: "Cova: boats anchored in turquoise water below a pine-covered cliff and sea cave",
+      width: 992,
+      height: 1323,
+    },
+    details: [
+      {
+        src: "/images/balear-boats.webp",
+        alt: "Detail: boats and a paddleboard on the turquoise water",
+        position: "40% 88%",
+      },
+      {
+        src: "/images/balear-boats.webp",
+        alt: "Detail: the sea cave under the cliff",
+        position: "88% 55%",
+      },
     ],
-    frames: [
-      { id: "none", label: "Unframed" },
-      { id: "black", label: "Black, white mat" },
-      { id: "oak", label: "Oak, white mat" },
-    ],
+    sizes,
+    papers,
+    frames,
   },
 ];
 
@@ -105,5 +172,21 @@ export function printsIn(collectionSlug: string) {
   return prints.filter((print) => print.collection === collectionSlug);
 }
 
+const priceFormat = new Intl.NumberFormat("en-AU", {
+  style: "currency",
+  currency: "AUD",
+  currencyDisplay: "narrowSymbol",
+  maximumFractionDigits: 0,
+});
+
+export function formatPrice(amount: number) {
+  return priceFormat.format(amount);
+}
+
+// The lowest size price, for "From $300" on cards
+export function startingPrice(print: Print) {
+  const prices = print.sizes.flatMap((size) => (size.price === undefined ? [] : [size.price]));
+  return prices.length > 0 ? formatPrice(Math.min(...prices)) : "[YOUR PRICE]";
+}
+
 export const shopHref = "/shop";
-export const featuredPrintHref = `/prints/${prints[0].slug}`;

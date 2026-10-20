@@ -37,6 +37,7 @@ export default async function PrintPage({ params }: PageProps<"/prints/[slug]">)
   const collectionHref = collection ? `/collections/${collection.slug}` : shopHref;
   const siblings = printsIn(print.collection).filter((other) => other.slug !== print.slug);
   const otherCollections = collections.filter((other) => other.slug !== print.collection);
+  const landscape = print.image.width > print.image.height;
 
   return (
     <div className="w-full bg-paper font-inter text-ink">
@@ -66,17 +67,20 @@ export default async function PrintPage({ params }: PageProps<"/prints/[slug]">)
       <section className={`${container} flex flex-wrap items-start gap-12 lg:gap-20`}>
         <div className="flex min-w-0 flex-[999_1_560px] flex-col gap-5">
           <div className="box-border flex justify-center bg-paper-soft p-6 sm:p-16">
-            <div className="box-border w-full max-w-[540px] bg-white p-4 shadow-[0_1px_3px_rgba(17,17,17,0.12)] sm:p-8">
-              <div className="relative aspect-[3/4] w-full">
-                <Image
-                  src={print.image.src}
-                  alt={print.image.alt}
-                  fill
-                  preload
-                  sizes="(min-width: 1024px) 480px, 90vw"
-                  className="object-cover"
-                />
-              </div>
+            <div
+              className={`box-border w-full bg-white p-4 shadow-[0_1px_3px_rgba(17,17,17,0.12)] sm:p-8 ${
+                landscape ? "max-w-[720px]" : "max-w-[540px]"
+              }`}
+            >
+              <Image
+                src={print.image.src}
+                alt={print.image.alt}
+                width={print.image.width}
+                height={print.image.height}
+                preload
+                sizes={landscape ? "(min-width: 1024px) 660px, 90vw" : "(min-width: 1024px) 480px, 90vw"}
+                className="block h-auto w-full"
+              />
             </div>
           </div>
           <div className="grid grid-cols-3 gap-5">
