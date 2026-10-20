@@ -43,9 +43,8 @@ export const collections: Collection[] = [
     name: "Balear",
     description: "[A sentence about this collection]",
     cover: {
-      src: "/images/balear.webp",
-      alt: "Swimmers in a turquoise cove between pine-covered cliffs in Majorca",
-      position: "55% center",
+      src: "/images/balear-boats.webp",
+      alt: "Boats anchored in turquoise water below a pine-covered cliff and sea cave in Majorca",
     },
   },
 ];
