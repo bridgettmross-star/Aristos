@@ -77,7 +77,7 @@ export default function Home() {
             // Serve the original file; re-encoding a small photo softens it further
             unoptimized
             sizes="(min-width: 1360px) 1280px, 100vw"
-            className="-z-10 object-cover object-[center_12%]"
+            className="-z-10 object-cover object-[center_32%]"
           />
           {/* Darkens the bottom of the photo so the white headline stays readable */}
           <div
