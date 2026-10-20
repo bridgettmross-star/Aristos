@@ -6,7 +6,8 @@ export type Collection = {
   slug: string;
   name: string;
   description: string;
-  cover?: Photo;
+  // position: which part of a wide photo stays in the portrait card (CSS object-position)
+  cover?: Photo & { position?: string };
 };
 
 export type Print = {
@@ -41,6 +42,11 @@ export const collections: Collection[] = [
     slug: "balear",
     name: "Balear",
     description: "[A sentence about this collection]",
+    cover: {
+      src: "/images/balear.webp",
+      alt: "Swimmers in a turquoise cove between pine-covered cliffs in Majorca",
+      position: "55% center",
+    },
   },
 ];
 
