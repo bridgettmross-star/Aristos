@@ -52,9 +52,8 @@ export default function Home() {
             <h1 className="m-0 whitespace-nowrap font-playfair text-[34px] font-medium leading-[1.05] text-white sm:text-[56px]">
               A R I S T O S
             </h1>
-            <p className="m-0 text-lg leading-normal text-hero-copy">
-              [One line about what you shoot and where — e.g. coastlines and light across New South
-              Wales]
+            <p className="m-0 text-[15px] font-medium tracking-[0.24em] text-hero-copy">
+              FINE ART PHOTOGRAPHY
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
