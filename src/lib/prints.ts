@@ -28,8 +28,8 @@ export const collections: Collection[] = [
     name: "Riviera",
     description: "[A sentence about this collection — where you shot it and what ties the prints together]",
     cover: {
-      src: "/images/paloma.jpg",
-      alt: "A pink villa among cypress trees above a turquoise cove",
+      src: "/images/riviera.webp",
+      alt: "A villa among cypress trees above a busy beach and turquoise cove on the Riviera",
     },
   },
   {
