@@ -1,33 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Placeholder } from "@/components/placeholder";
 import { printCount, type Collection } from "@/lib/prints";
 
+// The collection name sits over the photo and fades in on hover or keyboard focus.
+// Devices without hover (phones, tablets) show it all the time.
 export function CollectionCard({ collection }: { collection: Collection }) {
   return (
     <Link
       href={`/collections/${collection.slug}`}
-      className="group flex flex-col gap-4 text-ink no-underline"
+      className="group relative block aspect-[4/5] overflow-hidden bg-frame text-white no-underline outline-offset-4"
     >
       {collection.cover ? (
-        <div className="relative aspect-[4/5] overflow-hidden bg-frame">
-          <Image
-            src={collection.cover.src}
-            alt={collection.cover.alt}
-            fill
-            sizes="(min-width: 1024px) 420px, (min-width: 640px) 50vw, 100vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none"
-          />
-        </div>
+        <Image
+          src={collection.cover.src}
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 420px, (min-width: 640px) 50vw, 100vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
+        />
       ) : (
-        <Placeholder label="[Collection cover photo]" className="aspect-[4/5] p-6" />
+        <span className="absolute inset-x-0 top-6 text-center text-[13px] text-frame-label">
+          [Collection cover photo]
+        </span>
       )}
-      <div className="flex flex-col gap-1">
-        <span className="text-lg font-medium group-hover:text-ink-muted">{collection.name}</span>
-        <span className="text-sm text-ink-muted">
+      <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/40 p-6 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none [@media(hover:none)]:opacity-100">
+        <span className="font-playfair text-[32px] font-medium leading-tight">{collection.name}</span>
+        <span className="text-sm text-white/85">
           {collection.place} · {printCount(collection.slug)}
         </span>
-      </div>
+      </span>
     </Link>
   );
 }

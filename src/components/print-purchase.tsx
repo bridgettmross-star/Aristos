@@ -21,10 +21,8 @@ function OptionGroup({
   onChange: (id: string) => void;
 }) {
   return (
-    <fieldset className="m-0 flex flex-col gap-3.5 border-0 p-0">
-      <legend className="mb-3.5 p-0 text-[11px] font-normal tracking-[0.28em] text-stone">
-        {legend}
-      </legend>
+    <fieldset className="m-0 flex flex-col border-0 p-0">
+      <legend className="mb-3 p-0 text-[13px] font-medium text-ink">{legend}</legend>
       <div className="flex flex-wrap gap-2.5">
         {options.map((option) => {
           const selected = option.id === value;
@@ -34,10 +32,10 @@ function OptionGroup({
               type="button"
               aria-pressed={selected}
               onClick={() => onChange(option.id)}
-              className={`min-h-12 cursor-pointer border px-5 font-jost text-[13px] tracking-[0.06em] ${
+              className={`min-h-12 cursor-pointer border px-5 font-inter text-sm ${
                 selected
-                  ? "border-cream bg-cream font-normal text-night"
-                  : "border-night-border bg-transparent font-light text-cream hover:border-stone"
+                  ? "border-ink bg-ink text-white"
+                  : "border-field bg-white text-ink hover:border-ink"
               }`}
             >
               {option.label}
@@ -73,35 +71,35 @@ export function PrintPurchase({ print }: { print: Print }) {
 
   return (
     <>
-      <div className="flex flex-col gap-[18px]">
-        <span className="text-xs uppercase tracking-[0.32em] text-gold">{print.location}</span>
-        <h1 className="m-0 font-cormorant text-[64px] font-light leading-[0.95] sm:text-[88px]">
+      <div className="flex flex-col gap-4">
+        <span className="text-[13px] font-medium uppercase tracking-[0.14em] text-ink-muted">
+          {print.location}
+        </span>
+        <h1 className="m-0 font-playfair text-5xl font-medium leading-[1.05] sm:text-[64px]">
           {print.title}
         </h1>
         {/* TODO: replace with real pricing per size */}
-        <p className="m-0 font-cormorant text-[28px] font-normal">[PRICE for {size}]</p>
-        <p className="m-0 text-base leading-[1.8] text-stone-light">
+        <p className="m-0 font-playfair text-[26px]">[PRICE for {size}]</p>
+        <p className="m-0 text-[17px] leading-[1.65] text-ink-body">
           [Two or three sentences on the moment behind this photograph — the time of day, the light,
           why this cove.]
         </p>
-        <span className="text-xs tracking-[0.22em] text-stone">
-          EDITION OF [NUMBER] · SIGNED &amp; NUMBERED
-        </span>
+        <span className="text-[13px] text-ink-muted">Edition of [NUMBER] · Signed &amp; numbered</span>
       </div>
 
-      <OptionGroup legend="SIZE" options={print.sizes} value={selection.size} onChange={choose("size")} />
-      <OptionGroup legend="PAPER" options={print.papers} value={selection.paper} onChange={choose("paper")} />
-      <OptionGroup legend="FRAMING" options={print.frames} value={selection.frame} onChange={choose("frame")} />
+      <OptionGroup legend="Size" options={print.sizes} value={selection.size} onChange={choose("size")} />
+      <OptionGroup legend="Paper" options={print.papers} value={selection.paper} onChange={choose("paper")} />
+      <OptionGroup legend="Framing" options={print.frames} value={selection.frame} onChange={choose("frame")} />
 
-      <div className="flex flex-col gap-3.5">
+      <div className="flex flex-col gap-3">
         <button
           type="button"
           onClick={() => setAdded(true)}
-          className="min-h-15 cursor-pointer border-0 bg-cream font-jost text-xs font-medium tracking-[0.28em] text-night"
+          className="min-h-14 cursor-pointer border-0 bg-ink font-inter text-[15px] font-medium text-white"
         >
-          {added ? "ADDED TO CART" : "ADD TO CART"}
+          {added ? "Added to cart" : "Add to cart"}
         </button>
-        <p className="m-0 text-[13px] text-stone" aria-live="polite">
+        <p className="m-0 text-sm text-ink-muted" aria-live="polite">
           {summary}
         </p>
       </div>

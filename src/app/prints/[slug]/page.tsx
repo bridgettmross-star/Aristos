@@ -2,28 +2,21 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CartIcon } from "@/components/cart-icon";
+import { CollectionCard } from "@/components/collection-card";
 import { Placeholder } from "@/components/placeholder";
+import { PrintCard } from "@/components/print-card";
 import { PrintPurchase } from "@/components/print-purchase";
-import { getCollection, getPrint, prints, shopHref } from "@/lib/prints";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader, container } from "@/components/site-header";
+import { collections, getCollection, getPrint, prints, printsIn, shopHref } from "@/lib/prints";
 
-const container = "mx-auto box-border max-w-[1440px] px-5 sm:px-14";
-const navLink = "text-cream no-underline hover:text-gold";
+const sectionHeading = "m-0 font-playfair text-4xl font-medium";
+const textLink = "text-[15px] text-ink hover:text-ink-muted";
 
 const infoSections = [
-  { title: "THE PRINT", body: "[Paper, inks, lab, signing and certificate of authenticity]" },
-  { title: "DELIVERY", body: "[Printing time, delivery within Australia and overseas, packaging]" },
-  { title: "RETURNS", body: "[Your returns and damaged-in-transit policy]" },
-];
-
-const morePrints = [1, 2, 3, 4];
-
-const footerLinks = [
-  { href: "#shipping", label: "SHIPPING" },
-  { href: "#returns", label: "RETURNS" },
-  { href: "#care", label: "PRINT CARE" },
-  { href: "#instagram", label: "INSTAGRAM" },
-  { href: "/#contact", label: "CONTACT" },
+  { title: "The print", body: "[Paper, inks, lab, signing and certificate of authenticity]" },
+  { title: "Delivery", body: "[Printing time, delivery within Australia and overseas, packaging]" },
+  { title: "Returns", body: "[Your returns and damaged-in-transit policy]" },
 ];
 
 export function generateStaticParams() {
@@ -42,71 +35,45 @@ export default async function PrintPage({ params }: PageProps<"/prints/[slug]">)
   if (!print) notFound();
   const collection = getCollection(print.collection);
   const collectionHref = collection ? `/collections/${collection.slug}` : shopHref;
+  const siblings = printsIn(print.collection).filter((other) => other.slug !== print.slug);
+  const otherCollections = collections.filter((other) => other.slug !== print.collection);
 
   return (
-    <div className="min-h-screen w-full bg-night font-jost font-light text-cream">
-      <header
-        className={`${container} flex flex-wrap items-center justify-between gap-5 border-b border-night-rule py-8`}
-      >
-        <nav aria-label="Main" className="flex flex-wrap gap-9 text-[13px] font-normal tracking-[0.2em]">
-          <Link href={shopHref} className={navLink}>
-            SHOP
-          </Link>
-          <Link href={shopHref} className={navLink}>
-            COLLECTIONS
-          </Link>
-          <Link href="/#about" className={navLink}>
-            ABOUT
-          </Link>
-        </nav>
-        <Link
-          href="/"
-          className={`${navLink} pl-[0.42em] font-playfair text-[30px] font-normal tracking-[0.42em]`}
-        >
-          ARISTOS
-        </Link>
-        <div className="flex items-center gap-7 text-[13px] font-normal tracking-[0.2em]">
-          <Link href="/#contact" className={navLink}>
-            CONTACT
-          </Link>
-          <a href="#cart" aria-label="Cart" className={`${navLink} flex size-11 items-center justify-center`}>
-            <CartIcon size={20} strokeWidth={1.3} />
-          </a>
-        </div>
-      </header>
+    <div className="w-full bg-paper font-inter text-ink">
+      <SiteHeader />
 
       <nav
         aria-label="Breadcrumb"
-        className={`${container} flex flex-wrap gap-3 pt-7 pb-12 text-[11px] uppercase tracking-[0.22em] text-stone`}
+        className={`${container} flex flex-wrap gap-2 pt-8 pb-10 text-sm text-ink-muted sm:pt-10`}
       >
-        <Link href="/" className="text-stone no-underline hover:text-gold">
-          HOME
+        <Link href={shopHref} className="text-ink-muted hover:text-ink">
+          Shop prints
         </Link>
-        <span aria-hidden="true">—</span>
-        <Link href={shopHref} className="text-stone no-underline hover:text-gold">
-          SHOP
-        </Link>
-        <span aria-hidden="true">—</span>
-        <Link href={collectionHref} className="text-stone no-underline hover:text-gold">
-          {collection?.name}
-        </Link>
-        <span aria-hidden="true">—</span>
-        <span className="text-cream" aria-current="page">
+        <span aria-hidden="true">/</span>
+        {collection && (
+          <>
+            <Link href={collectionHref} className="text-ink-muted hover:text-ink">
+              {collection.name}
+            </Link>
+            <span aria-hidden="true">/</span>
+          </>
+        )}
+        <span className="text-ink" aria-current="page">
           {print.title}
         </span>
       </nav>
 
-      <section className={`${container} flex flex-wrap items-start gap-12 lg:gap-24`}>
+      <section className={`${container} flex flex-wrap items-start gap-12 lg:gap-20`}>
         <div className="flex min-w-0 flex-[999_1_560px] flex-col gap-5">
-          <div className="box-border flex justify-center bg-night-raised p-6 sm:p-18">
-            <div className="box-border w-full max-w-[560px] bg-cream p-4 sm:p-8">
+          <div className="box-border flex justify-center bg-paper-soft p-6 sm:p-16">
+            <div className="box-border w-full max-w-[540px] bg-white p-4 shadow-[0_1px_3px_rgba(17,17,17,0.12)] sm:p-8">
               <div className="relative aspect-[3/4] w-full">
                 <Image
                   src={print.image.src}
                   alt={print.image.alt}
                   fill
                   preload
-                  sizes="(min-width: 1024px) 500px, 90vw"
+                  sizes="(min-width: 1024px) 480px, 90vw"
                   className="object-cover"
                 />
               </div>
@@ -125,97 +92,78 @@ export default async function PrintPage({ params }: PageProps<"/prints/[slug]">)
                 />
               </div>
             ))}
-            <Placeholder
-              label="[Framed print in a room]"
-              tone="dark"
-              className="aspect-square text-xs"
-            />
+            <Placeholder label="[Framed print in a room]" className="aspect-square text-xs" />
           </div>
         </div>
 
-        <div className="flex min-w-0 flex-[1_1_400px] flex-col gap-10">
+        <div className="flex min-w-0 flex-[1_1_400px] flex-col gap-9">
           <PrintPurchase print={print} />
 
           <div className="flex flex-col">
             {infoSections.map((section, index) => (
               <div
                 key={section.title}
-                className={`flex flex-col gap-2.5 border-t border-night-rule py-6 ${
+                className={`flex flex-col gap-2 border-t border-rule py-5 ${
                   index === infoSections.length - 1 ? "border-b" : ""
                 }`}
               >
-                <h2 className="m-0 text-[11px] font-medium tracking-[0.28em]">{section.title}</h2>
-                <p className="m-0 text-sm leading-[1.75] text-stone">{section.body}</p>
+                <h2 className="m-0 text-[15px] font-semibold">{section.title}</h2>
+                <p className="m-0 text-[15px] leading-[1.6] text-ink-muted">{section.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mt-40 bg-night-raised">
-        <div className={`${container} flex flex-wrap items-center gap-12 py-30 lg:gap-24`}>
-          <div className="flex min-w-0 flex-[1_1_360px] flex-col gap-6">
-            <span className="text-xs tracking-[0.32em] text-gold">IN SITU</span>
-            <h2 className="m-0 font-cormorant text-5xl font-light leading-none sm:text-[64px]">
-              See it <span className="italic">on your wall</span>
-            </h2>
-            <p className="m-0 text-base leading-[1.8] text-stone-light">
+      <section className={`${container} pt-30`}>
+        <div className="flex flex-wrap items-center gap-12 bg-paper-soft p-6 sm:p-12 lg:gap-16">
+          <div className="flex min-w-0 flex-[1_1_320px] flex-col gap-5">
+            <span className="text-[13px] font-medium tracking-[0.14em] text-ink-muted">IN SITU</span>
+            <h2 className={`${sectionHeading} leading-[1.15]`}>See it on your wall</h2>
+            <p className="m-0 text-[17px] leading-[1.65] text-ink-body">
               Each size shown to scale in a room, so you can judge how much of the wall it commands.
             </p>
           </div>
           <Placeholder
             label={`[Room mock-up with ${print.title} hung to scale]`}
-            tone="dark"
-            className="aspect-[16/10] min-w-0 flex-[999_1_560px]"
+            className="aspect-[16/10] min-w-0 flex-[999_1_520px]"
           />
         </div>
       </section>
 
-      <section className={`${container} flex flex-col gap-12 py-40`}>
-        <div className="flex flex-wrap items-baseline justify-between gap-4 border-t border-night-rule pt-7">
-          <h2 className="m-0 font-cormorant text-[44px] font-light sm:text-[56px]">
-            From the collection
-          </h2>
-          <Link
-            href={collectionHref}
-            className="text-xs font-normal tracking-[0.24em] text-cream underline-offset-8 hover:text-gold"
-          >
-            VIEW ALL
-          </Link>
-        </div>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(260px,100%),1fr))] gap-6">
-          {morePrints.map((id) => (
-            <Link
-              key={id}
-              href={`/prints/${print.slug}`}
-              className="flex flex-col gap-[18px] text-cream no-underline hover:text-gold"
-            >
-              <Placeholder label="[Print photo]" tone="dark" className="aspect-[3/4]" />
-              <div className="flex flex-col gap-1.5">
-                <span className="font-cormorant text-2xl font-normal">[Print title]</span>
-                <span className="text-xs tracking-[0.2em] text-stone">FROM [PRICE]</span>
-              </div>
-            </Link>
-          ))}
-        </div>
+      <section className={`${container} flex flex-col gap-10 pt-30 pb-30`}>
+        {siblings.length > 0 ? (
+          <>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <h2 className={sectionHeading}>More from {collection?.name}</h2>
+              <Link href={collectionHref} className={textLink}>
+                View collection
+              </Link>
+            </div>
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))] gap-x-6 gap-y-10">
+              {siblings.map((other) => (
+                <PrintCard key={other.slug} print={other} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <h2 className={sectionHeading}>Explore other collections</h2>
+              <Link href={shopHref} className={textLink}>
+                All prints
+              </Link>
+            </div>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-6">
+              {otherCollections.map((other) => (
+                <CollectionCard key={other.slug} collection={other} />
+              ))}
+            </div>
+          </>
+        )}
       </section>
 
-      <footer className={`${container} flex flex-col items-center gap-9 pb-16`}>
-        <span className="pl-[0.42em] font-playfair text-[44px] font-normal tracking-[0.42em]">
-          ARISTOS
-        </span>
-        <nav
-          aria-label="Footer"
-          className="flex flex-wrap justify-center gap-9 text-[11px] tracking-[0.24em]"
-        >
-          {footerLinks.map((link) => (
-            <a key={link.label} href={link.href} className="text-stone no-underline hover:text-cream">
-              {link.label}
-            </a>
-          ))}
-        </nav>
-        <span className="text-xs text-stone-dim">© Aristos [YEAR] · ABN [YOUR ABN]</span>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

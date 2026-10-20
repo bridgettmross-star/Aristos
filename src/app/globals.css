@@ -1,15 +1,11 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-archivo: var(--font-archivo), sans-serif;
   --font-inter: var(--font-inter), system-ui, sans-serif;
-  --font-cormorant: var(--font-cormorant), serif;
-  --font-jost: var(--font-jost), system-ui, sans-serif;
   --font-playfair: var(--font-playfair), Georgia, serif;
 }
 
 @theme {
-  /* Home: light gallery */
   --color-ink: #111111;
   --color-ink-body: #33312e;
   --color-ink-muted: #55524d;
@@ -20,16 +16,4 @@
   --color-frame: #e7e5e1;
   --color-frame-label: #5a5752;
   --color-hero-copy: #e4e1db;
-
-  /* Print pages: dark editorial */
-  --color-night: #0e0e0d;
-  --color-night-raised: #171614;
-  --color-night-frame: #1e1d1b;
-  --color-night-rule: #2e2c29;
-  --color-night-border: #5a5752;
-  --color-cream: #efebe3;
-  --color-gold: #c8b68e;
-  --color-stone: #a29d93;
-  --color-stone-light: #cfcac0;
-  --color-stone-dim: #8e897f;
 }
