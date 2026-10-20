@@ -24,7 +24,9 @@ export function CollectionCard({ collection }: { collection: Collection }) {
       )}
       <div className="flex flex-col gap-1">
         <span className="text-lg font-medium group-hover:text-ink-muted">{collection.name}</span>
-        <span className="text-sm text-ink-muted">{printCount(collection.slug)}</span>
+        <span className="text-sm text-ink-muted">
+          {collection.place} · {printCount(collection.slug)}
+        </span>
       </div>
     </Link>
   );

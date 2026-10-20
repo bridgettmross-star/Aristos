@@ -5,6 +5,7 @@ export type Photo = { src: string; alt: string };
 export type Collection = {
   slug: string;
   name: string;
+  place: string;
   description: string;
   cover?: Photo;
 };
@@ -26,6 +27,7 @@ export const collections: Collection[] = [
   {
     slug: "riviera",
     name: "Riviera",
+    place: "French Riviera",
     description: "[A sentence about this collection — where you shot it and what ties the prints together]",
     cover: {
       src: "/images/paloma.jpg",
@@ -33,13 +35,15 @@ export const collections: Collection[] = [
     },
   },
   {
-    slug: "collection-2",
-    name: "[Collection name]",
+    slug: "paname",
+    name: "Paname",
+    place: "Paris",
     description: "[A sentence about this collection]",
   },
   {
-    slug: "collection-3",
-    name: "[Collection name]",
+    slug: "balear",
+    name: "Balear",
+    place: "Majorca",
     description: "[A sentence about this collection]",
   },
 ];
