@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader, container } from "@/components/site-header";
-import { contactEmail } from "@/lib/contact";
+import { contactEmail, instagramHandle, instagramUrl } from "@/lib/contact";
 import { prints } from "@/lib/prints";
 
 export const metadata: Metadata = { title: "Aristos — Contact" };
@@ -25,6 +25,17 @@ export default function ContactPage() {
             <span className="text-[13px] font-medium tracking-[0.14em] text-ink-muted">EMAIL</span>
             <a href={`mailto:${contactEmail}`} className="w-fit text-[17px] text-ink hover:text-ink-muted">
               {contactEmail}
+            </a>
+          </div>
+          <div className="flex flex-col gap-1.5 border-t border-rule pt-6">
+            <span className="text-[13px] font-medium tracking-[0.14em] text-ink-muted">INSTAGRAM</span>
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-fit text-[17px] text-ink hover:text-ink-muted"
+            >
+              @{instagramHandle}
             </a>
           </div>
         </div>

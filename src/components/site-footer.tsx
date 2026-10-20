@@ -1,11 +1,12 @@
 import { container } from "@/components/site-header";
+import { instagramUrl } from "@/lib/contact";
 
 const footerLinks = [
   { href: "#shipping", label: "Shipping" },
   { href: "#returns", label: "Returns" },
   { href: "#care", label: "Print care" },
   { href: "/contact", label: "Contact" },
-  { href: "#instagram", label: "Instagram" },
+  { href: instagramUrl, label: "Instagram", external: true },
 ];
 
 export function SiteFooter() {
@@ -17,7 +18,12 @@ export function SiteFooter() {
         </span>
         <nav aria-label="Footer" className="flex flex-wrap gap-7">
           {footerLinks.map((link) => (
-            <a key={link.label} href={link.href} className="text-ink-muted hover:text-ink">
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-ink-muted hover:text-ink"
+              {...("external" in link && { target: "_blank", rel: "noopener noreferrer" })}
+            >
               {link.label}
             </a>
           ))}
