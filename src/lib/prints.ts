@@ -37,6 +37,11 @@ export const collections: Collection[] = [
     slug: "paname",
     name: "Paname",
     description: "[A sentence about this collection]",
+    cover: {
+      src: "/images/paname.webp",
+      alt: "The Eiffel Tower rising above grey Paris rooftops and chimney pots",
+      position: "86% center",
+    },
   },
   {
     slug: "balear",
