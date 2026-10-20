@@ -309,6 +309,13 @@ export function printsIn(collectionSlug: string) {
   return prints.filter((print) => print.collection === collectionSlug);
 }
 
+// Every print, taking one from each collection in turn so no collection is bunched together
+export function mixedPrints() {
+  const groups = collections.map((collection) => printsIn(collection.slug));
+  const longest = Math.max(...groups.map((group) => group.length));
+  return Array.from({ length: longest }, (_, i) => groups.flatMap((group) => group[i] ?? [])).flat();
+}
+
 const priceFormat = new Intl.NumberFormat("en-AU", {
   style: "currency",
   currency: "AUD",
