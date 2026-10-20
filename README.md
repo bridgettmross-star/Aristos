@@ -3,7 +3,9 @@
 Website for Aristos fine art prints, built with Next.js and Tailwind CSS.
 
 - `/` — home page
-- `/prints/paloma` — print product page
+- `/shop` — all collections
+- `/collections/[slug]` — prints in one collection
+- `/prints/[slug]` — print product page
 
 ## Run locally
 
@@ -18,4 +20,4 @@ Then open http://localhost:3000.
 
 - Photos: `public/images/hero.webp` is the home page hero; `public/images/paloma.jpg` is still a placeholder.
 - Bracketed text such as `[YOUR PRICE]` and `[YOUR ABN]` marks copy still to be written.
-- Prints and their size, paper and framing options live in `src/lib/prints.ts`.
+- Collections, prints and their size, paper and framing options live in `src/lib/prints.ts`.

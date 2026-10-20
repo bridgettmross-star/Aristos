@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { CartIcon } from "@/components/cart-icon";
 import { Placeholder } from "@/components/placeholder";
 import { PrintPurchase } from "@/components/print-purchase";
-import { getPrint, prints } from "@/lib/prints";
+import { getCollection, getPrint, prints, shopHref } from "@/lib/prints";
 
 const container = "mx-auto box-border max-w-[1440px] px-5 sm:px-14";
 const navLink = "text-cream no-underline hover:text-gold";
@@ -40,6 +40,8 @@ export default async function PrintPage({ params }: PageProps<"/prints/[slug]">)
   const { slug } = await params;
   const print = getPrint(slug);
   if (!print) notFound();
+  const collection = getCollection(print.collection);
+  const collectionHref = collection ? `/collections/${collection.slug}` : shopHref;
 
   return (
     <div className="min-h-screen w-full bg-night font-jost font-light text-cream">
@@ -47,10 +49,10 @@ export default async function PrintPage({ params }: PageProps<"/prints/[slug]">)
         className={`${container} flex flex-wrap items-center justify-between gap-5 border-b border-night-rule py-8`}
       >
         <nav aria-label="Main" className="flex flex-wrap gap-9 text-[13px] font-normal tracking-[0.2em]">
-          <Link href={`/prints/${print.slug}`} className={navLink}>
+          <Link href={shopHref} className={navLink}>
             SHOP
           </Link>
-          <Link href="/#collections" className={navLink}>
+          <Link href={shopHref} className={navLink}>
             COLLECTIONS
           </Link>
           <Link href="/#about" className={navLink}>
@@ -81,8 +83,12 @@ export default async function PrintPage({ params }: PageProps<"/prints/[slug]">)
           HOME
         </Link>
         <span aria-hidden="true">—</span>
-        <Link href="/#collections" className="text-stone no-underline hover:text-gold">
-          {print.collection}
+        <Link href={shopHref} className="text-stone no-underline hover:text-gold">
+          SHOP
+        </Link>
+        <span aria-hidden="true">—</span>
+        <Link href={collectionHref} className="text-stone no-underline hover:text-gold">
+          {collection?.name}
         </Link>
         <span aria-hidden="true">—</span>
         <span className="text-cream" aria-current="page">
@@ -171,7 +177,7 @@ export default async function PrintPage({ params }: PageProps<"/prints/[slug]">)
             From the collection
           </h2>
           <Link
-            href="/#collections"
+            href={collectionHref}
             className="text-xs font-normal tracking-[0.24em] text-cream underline-offset-8 hover:text-gold"
           >
             VIEW ALL

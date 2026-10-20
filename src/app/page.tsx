@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CartIcon } from "@/components/cart-icon";
+import { CollectionCard } from "@/components/collection-card";
 import { Placeholder } from "@/components/placeholder";
-import { featuredPrintHref } from "@/lib/prints";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader, container } from "@/components/site-header";
+import { collections, featuredPrintHref, shopHref } from "@/lib/prints";
 
-const container = "mx-auto box-border max-w-[1360px] px-5 sm:px-10";
 const sectionHeading = "m-0 font-playfair text-4xl font-medium";
 const textLink = "text-[15px] text-ink hover:text-ink-muted";
 
-const collections = [1, 2, 3];
 const newPrints = [1, 2, 3, 4];
 
 const promises = [
@@ -26,46 +26,10 @@ const promises = [
   },
 ];
 
-const footerLinks = [
-  { href: "#shipping", label: "Shipping" },
-  { href: "#returns", label: "Returns" },
-  { href: "#care", label: "Print care" },
-  { href: "#contact", label: "Contact" },
-  { href: "#instagram", label: "Instagram" },
-];
-
 export default function Home() {
   return (
     <div className="w-full bg-paper font-inter text-ink">
-      <header className={`${container} flex flex-wrap items-center justify-between gap-5 py-7`}>
-        <Link
-          href="/"
-          className="font-playfair text-[22px] font-semibold tracking-[0.32em] text-ink no-underline"
-        >
-          ARISTOS
-        </Link>
-        <nav aria-label="Main" className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[15px] sm:gap-8">
-          <Link href={featuredPrintHref} className="text-ink no-underline hover:text-ink-muted">
-            Shop prints
-          </Link>
-          <a href="#collections" className="text-ink no-underline hover:text-ink-muted">
-            Collections
-          </a>
-          <a href="#about" className="text-ink no-underline hover:text-ink-muted">
-            About
-          </a>
-          <a href="#contact" className="text-ink no-underline hover:text-ink-muted">
-            Contact
-          </a>
-          <a
-            href="#cart"
-            aria-label="Cart"
-            className="flex size-11 items-center justify-center text-ink hover:text-ink-muted"
-          >
-            <CartIcon size={22} strokeWidth={1.6} />
-          </a>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className={container}>
         <div className="relative isolate box-border flex h-[560px] flex-col justify-end p-8 sm:h-[680px] sm:p-14">
@@ -94,7 +58,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
-                href={featuredPrintHref}
+                href={shopHref}
                 className="inline-flex min-h-12 items-center bg-white px-7 text-[15px] font-medium text-ink no-underline"
               >
                 Shop prints
@@ -113,19 +77,13 @@ export default function Home() {
       <section id="collections" className={`${container} flex flex-col gap-10 pt-30`}>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <h2 className={sectionHeading}>Collections</h2>
-          <a href="#collections" className={textLink}>
+          <Link href={shopHref} className={textLink}>
             All collections
-          </a>
+          </Link>
         </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-6">
-          {collections.map((id) => (
-            <Link key={id} href={featuredPrintHref} className="flex flex-col gap-4 text-ink no-underline">
-              <Placeholder label="[Collection cover photo]" className="aspect-[4/5] p-6" />
-              <div className="flex flex-col gap-1">
-                <span className="text-lg font-medium">[Collection name]</span>
-                <span className="text-sm text-ink-muted">[Number] prints</span>
-              </div>
-            </Link>
+          {collections.map((collection) => (
+            <CollectionCard key={collection.slug} collection={collection} />
           ))}
         </div>
       </section>
@@ -133,7 +91,7 @@ export default function Home() {
       <section className={`${container} flex flex-col gap-10 pt-30`}>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <h2 className={sectionHeading}>New prints</h2>
-          <Link href={featuredPrintHref} className={textLink}>
+          <Link href={shopHref} className={textLink}>
             Shop all prints
           </Link>
         </div>
@@ -211,23 +169,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-rule">
-        <div
-          className={`${container} flex flex-wrap justify-between gap-8 py-12 text-sm text-ink-muted`}
-        >
-          <span className="font-playfair text-base font-semibold tracking-[0.32em] text-ink">
-            ARISTOS
-          </span>
-          <nav aria-label="Footer" className="flex flex-wrap gap-7">
-            {footerLinks.map((link) => (
-              <a key={link.label} href={link.href} className="text-ink-muted hover:text-ink">
-                {link.label}
-              </a>
-            ))}
-          </nav>
-          <span>© Aristos [YEAR] · ABN [YOUR ABN]</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
