@@ -6,6 +6,7 @@ import { featuredPrintHref } from "@/lib/prints";
 
 const container = "mx-auto box-border max-w-[1360px] px-5 sm:px-10";
 const sectionHeading = "m-0 font-archivo text-4xl font-medium";
+const shopHeading = "m-0 font-playfair text-4xl font-medium";
 const textLink = "text-[15px] text-ink hover:text-ink-muted";
 
 const collections = [1, 2, 3];
@@ -85,7 +86,7 @@ export default function Home() {
             className="absolute inset-0 -z-10 bg-linear-to-t from-black/55 via-black/15 to-transparent"
           />
           <div className="flex max-w-[640px] flex-col gap-5">
-            <h1 className="m-0 whitespace-nowrap font-archivo text-[34px] font-medium leading-[1.05] text-white sm:text-[56px]">
+            <h1 className="m-0 whitespace-nowrap font-playfair text-[34px] font-medium leading-[1.05] text-white sm:text-[56px]">
               A R I S T O S
             </h1>
             <p className="m-0 text-lg leading-normal text-hero-copy">
@@ -112,7 +113,7 @@ export default function Home() {
 
       <section id="collections" className={`${container} flex flex-col gap-10 pt-30`}>
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className={sectionHeading}>Collections</h2>
+          <h2 className={shopHeading}>Collections</h2>
           <a href="#collections" className={textLink}>
             All collections
           </a>
@@ -132,7 +133,7 @@ export default function Home() {
 
       <section className={`${container} flex flex-col gap-10 pt-30`}>
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className={sectionHeading}>New prints</h2>
+          <h2 className={shopHeading}>New prints</h2>
           <Link href={featuredPrintHref} className={textLink}>
             Shop all prints
           </Link>
