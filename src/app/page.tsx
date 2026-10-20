@@ -74,6 +74,8 @@ export default function Home() {
             alt="A cream villa above a turquoise cove on the Riviera, with a cliffside tennis court"
             fill
             preload
+            // Serve the original file; re-encoding a small photo softens it further
+            unoptimized
             sizes="(min-width: 1360px) 1280px, 100vw"
             className="-z-10 object-cover object-[center_12%]"
           />
