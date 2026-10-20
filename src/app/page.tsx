@@ -34,14 +34,14 @@ export default function Home() {
       <section className={container}>
         <div className="relative isolate box-border flex h-[560px] flex-col justify-end p-8 sm:h-[680px] sm:p-14">
           <Image
-            src="/images/hero.webp"
-            alt="A cream villa above a turquoise cove on the Riviera, with a cliffside tennis court"
+            src="/images/hero-jetty.webp"
+            alt="A wooden jetty over rocks beside a moored boat on glittering dark water"
             fill
             preload
             // Serve the original file; re-encoding a small photo softens it further
             unoptimized
             sizes="(min-width: 1360px) 1280px, 100vw"
-            className="-z-10 object-cover object-[center_32%]"
+            className="-z-10 object-cover object-center"
           />
           {/* Darkens the bottom of the photo so the white headline stays readable */}
           <div
