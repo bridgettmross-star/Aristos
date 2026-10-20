@@ -158,6 +158,89 @@ export const prints: Print[] = [
     papers,
     frames,
   },
+  {
+    slug: "vela",
+    title: "Vela",
+    location: "Majorca, Spain",
+    collection: "balear",
+    image: {
+      src: "/images/balear-sailboat.webp",
+      alt: "Vela: a sailboat and a small motorboat anchored below a pine-covered headland with a villa on top",
+      width: 992,
+      height: 1403,
+    },
+    details: [
+      {
+        src: "/images/balear-sailboat.webp",
+        alt: "Detail: the villa on the clifftop",
+        position: "10% 24%",
+      },
+      {
+        src: "/images/balear-sailboat.webp",
+        alt: "Detail: the two boats at anchor",
+        position: "80% 60%",
+      },
+    ],
+    sizes,
+    papers,
+    frames,
+  },
+  {
+    slug: "cala",
+    title: "Cala",
+    location: "Majorca, Spain",
+    collection: "balear",
+    image: {
+      src: "/images/balear-cove.webp",
+      alt: "Cala: swimmers in a turquoise cove between pine-covered cliffs",
+      width: 992,
+      height: 702,
+      position: "55% center",
+    },
+    details: [
+      {
+        src: "/images/balear-cove.webp",
+        alt: "Detail: boats anchored at the mouth of the cove",
+        position: "8% center",
+      },
+      {
+        src: "/images/balear-cove.webp",
+        alt: "Detail: the crowded beach and clear shallows",
+        position: "80% center",
+      },
+    ],
+    sizes,
+    papers,
+    frames,
+  },
+  {
+    slug: "moll",
+    title: "Moll",
+    location: "Majorca, Spain",
+    collection: "balear",
+    image: {
+      src: "/images/hero-jetty.webp",
+      alt: "Moll: a wooden jetty over dark rocks beside a moored boat on glittering water",
+      width: 992,
+      height: 702,
+      position: "65% center",
+    },
+    details: [
+      {
+        src: "/images/hero-jetty.webp",
+        alt: "Detail: the wooden jetty and its rope railing",
+        position: "45% center",
+      },
+      {
+        src: "/images/hero-jetty.webp",
+        alt: "Detail: the moored boat on the water",
+        position: "100% center",
+      },
+    ],
+    sizes,
+    papers,
+    frames,
+  },
 ];
 
 export function getPrint(slug: string) {

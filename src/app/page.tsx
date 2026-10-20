@@ -94,7 +94,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(240px,100%),1fr))] gap-6">
-          {prints.map((print) => (
+          {prints.slice(0, 4).map((print) => (
             <PrintCard key={print.slug} print={print} />
           ))}
         </div>
