@@ -104,6 +104,60 @@ export const prints: Print[] = [
     frames,
   },
   {
+    slug: "tennis",
+    title: "Tennis",
+    location: "Saint-Jean-Cap-Ferrat, France",
+    collection: "riviera",
+    image: {
+      src: "/images/riviera-tennis.webp",
+      alt: "Tennis: a cream villa above a turquoise cove, with a tennis court cut into the cliffside garden",
+      width: 992,
+      height: 1324,
+    },
+    details: [
+      {
+        src: "/images/riviera-tennis.webp",
+        alt: "Detail: the villa and its terraces",
+        position: "35% 15%",
+      },
+      {
+        src: "/images/riviera-tennis.webp",
+        alt: "Detail: the green tennis court below the cliff",
+        position: "75% 85%",
+      },
+    ],
+    sizes,
+    papers,
+    frames,
+  },
+  {
+    slug: "piscine",
+    title: "Piscine",
+    location: "Saint-Jean-Cap-Ferrat, France",
+    collection: "riviera",
+    image: {
+      src: "/images/riviera-pool.webp",
+      alt: "Piscine: a pool perched on stone walls above the sea, with pines, palms and a small beach below",
+      width: 992,
+      height: 1403,
+    },
+    details: [
+      {
+        src: "/images/riviera-pool.webp",
+        alt: "Detail: the pool on the rocks",
+        position: "22% 32%",
+      },
+      {
+        src: "/images/riviera-pool.webp",
+        alt: "Detail: swimmers on the beach beside a giant chessboard",
+        position: "72% 88%",
+      },
+    ],
+    sizes,
+    papers,
+    frames,
+  },
+  {
     slug: "toits",
     title: "Toits",
     location: "Paris, France",
