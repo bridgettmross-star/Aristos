@@ -5,8 +5,7 @@ import { Placeholder } from "@/components/placeholder";
 import { featuredPrintHref } from "@/lib/prints";
 
 const container = "mx-auto box-border max-w-[1360px] px-5 sm:px-10";
-const sectionHeading = "m-0 font-archivo text-4xl font-medium";
-const shopHeading = "m-0 font-playfair text-4xl font-medium";
+const sectionHeading = "m-0 font-playfair text-4xl font-medium";
 const textLink = "text-[15px] text-ink hover:text-ink-muted";
 
 const collections = [1, 2, 3];
@@ -113,7 +112,7 @@ export default function Home() {
 
       <section id="collections" className={`${container} flex flex-col gap-10 pt-30`}>
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className={shopHeading}>Collections</h2>
+          <h2 className={sectionHeading}>Collections</h2>
           <a href="#collections" className={textLink}>
             All collections
           </a>
@@ -133,7 +132,7 @@ export default function Home() {
 
       <section className={`${container} flex flex-col gap-10 pt-30`}>
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className={shopHeading}>New prints</h2>
+          <h2 className={sectionHeading}>New prints</h2>
           <Link href={featuredPrintHref} className={textLink}>
             Shop all prints
           </Link>
@@ -186,7 +185,7 @@ export default function Home() {
 
       <section id="contact" className={`${container} py-30`}>
         <div className="box-border flex flex-col items-center gap-5 bg-paper-soft px-6 py-16 text-center sm:px-12">
-          <h2 className="m-0 font-archivo text-[32px] font-medium">First look at new releases</h2>
+          <h2 className="m-0 font-playfair text-[32px] font-medium">First look at new releases</h2>
           <p className="m-0 max-w-[520px] text-base text-ink-muted">
             Join the list to hear about new collections and limited editions before anyone else.
           </p>
