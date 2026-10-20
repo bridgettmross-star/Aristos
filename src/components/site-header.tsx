@@ -25,7 +25,7 @@ export function SiteHeader() {
         <Link href="/#about" className={navLink}>
           About
         </Link>
-        <Link href="/#contact" className={navLink}>
+        <Link href="/contact" className={navLink}>
           Contact
         </Link>
         <a

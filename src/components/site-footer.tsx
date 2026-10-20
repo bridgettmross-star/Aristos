@@ -4,7 +4,7 @@ const footerLinks = [
   { href: "#shipping", label: "Shipping" },
   { href: "#returns", label: "Returns" },
   { href: "#care", label: "Print care" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
   { href: "#instagram", label: "Instagram" },
 ];
 

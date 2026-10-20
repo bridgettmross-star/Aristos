@@ -111,7 +111,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className={`${container} pt-30`}>
+      <section id="about" className={`${container} py-30`}>
         <div className="flex flex-wrap items-center gap-16">
           <Placeholder
             label="[Portrait of you, or you at work]"
@@ -130,34 +130,6 @@ export default function Home() {
               Read the full story
             </a>
           </div>
-        </div>
-      </section>
-
-      <section id="contact" className={`${container} py-30`}>
-        <div className="box-border flex flex-col items-center gap-5 bg-paper-soft px-6 py-16 text-center sm:px-12">
-          <h2 className="m-0 font-playfair text-[32px] font-medium">First look at new releases</h2>
-          <p className="m-0 max-w-[520px] text-base text-ink-muted">
-            Join the list to hear about new collections and limited editions before anyone else.
-          </p>
-          <form className="flex w-full max-w-[520px] flex-wrap items-end justify-center gap-3">
-            <div className="flex flex-[1_1_260px] flex-col gap-1.5 text-left">
-              <label htmlFor="email" className="text-[13px] font-medium">
-                Email address
-              </label>
-              <input
-                id="email"
-                type="email"
-                placeholder="you@example.com"
-                className="min-h-12 border border-field bg-white px-4 font-inter text-[15px]"
-              />
-            </div>
-            <button
-              type="button"
-              className="min-h-12 cursor-pointer border-0 bg-ink px-7 font-inter text-[15px] font-medium text-white"
-            >
-              Subscribe
-            </button>
-          </form>
         </div>
       </section>
 
