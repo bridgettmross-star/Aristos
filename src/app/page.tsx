@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CollectionCard } from "@/components/collection-card";
+import { InstagramGrid } from "@/components/instagram-grid";
 import { Placeholder } from "@/components/placeholder";
 import { PrintCard } from "@/components/print-card";
 import { SiteFooter } from "@/components/site-footer";
@@ -129,6 +130,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <InstagramGrid />
 
       <SiteFooter />
     </div>
