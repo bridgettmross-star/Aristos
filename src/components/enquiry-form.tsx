@@ -20,12 +20,18 @@ export function EnquiryForm({ printTitles }: { printTitles: string[] }) {
     }
     setStatus("sending");
     try {
+      const fields = Object.fromEntries(new FormData(event.currentTarget));
       const response = await fetch(enquiryEndpoint, {
         method: "POST",
-        body: new FormData(event.currentTarget),
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          ...fields,
+          _subject: `Website enquiry: ${fields.topic}`,
+          _template: "table",
+        }),
       });
-      setStatus(response.ok ? "sent" : "error");
+      const result = await response.json().catch(() => null);
+      setStatus(response.ok && String(result?.success) === "true" ? "sent" : "error");
     } catch {
       setStatus("error");
     }

@@ -1,13 +1,11 @@
-// The address shown on the contact page. Replace with the real one.
-export const contactEmail = "[YOUR EMAIL]";
+export const contactEmail = "aristoscollective@gmail.com";
 
 export const instagramHandle = "aristoscollective";
 export const instagramUrl = `https://www.instagram.com/${instagramHandle}/`;
 
-// Where the enquiry form sends messages: a Formspree form URL such as
-// "https://formspree.io/f/abcdwxyz". Leave empty until the form is set up;
-// the form then asks people to email instead.
-export const enquiryEndpoint = "";
+// FormSubmit forwards each enquiry to contactEmail. The first enquiry sends an
+// activation email to that inbox; nothing is delivered until it's confirmed.
+export const enquiryEndpoint = `https://formsubmit.co/ajax/${contactEmail}`;
 
 export const enquiryTopics = [
   "Buying a print",

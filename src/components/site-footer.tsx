@@ -1,5 +1,5 @@
 import { container } from "@/components/site-header";
-import { instagramUrl } from "@/lib/contact";
+import { contactEmail, instagramUrl } from "@/lib/contact";
 
 const footerLinks = [
   { href: "#shipping", label: "Shipping" },
@@ -28,7 +28,12 @@ export function SiteFooter() {
             </a>
           ))}
         </nav>
-        <span>© Aristos [YEAR] · ABN [YOUR ABN]</span>
+        <div className="flex flex-col gap-1.5">
+          <a href={`mailto:${contactEmail}`} className="text-ink-muted hover:text-ink">
+            {contactEmail}
+          </a>
+          <span>© Aristos [YEAR] · ABN [YOUR ABN]</span>
+        </div>
       </div>
     </footer>
   );
