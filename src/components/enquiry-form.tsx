@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { contactEmail, enquiryEndpoint, enquiryTopics } from "@/lib/contact";
+import { contactEmail, enquiryAccessKey, enquiryEndpoint, enquiryTopics } from "@/lib/contact";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -14,24 +14,23 @@ export function EnquiryForm({ printTitles }: { printTitles: string[] }) {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!enquiryEndpoint) {
-      setStatus("error");
-      return;
-    }
     setStatus("sending");
     try {
       const fields = Object.fromEntries(new FormData(event.currentTarget));
       const response = await fetch(enquiryEndpoint, {
         method: "POST",
+        // Give up after 20 seconds so nobody is left waiting on "Sending…"
+        signal: AbortSignal.timeout(20000),
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           ...fields,
-          _subject: `Website enquiry: ${fields.topic}`,
-          _template: "table",
+          access_key: enquiryAccessKey,
+          subject: `Website enquiry: ${fields.topic}`,
+          from_name: "Aristos website",
         }),
       });
       const result = await response.json().catch(() => null);
-      setStatus(response.ok && String(result?.success) === "true" ? "sent" : "error");
+      setStatus(response.ok && result?.success === true ? "sent" : "error");
     } catch {
       setStatus("error");
     }

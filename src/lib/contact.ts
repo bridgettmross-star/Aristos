@@ -3,9 +3,10 @@ export const contactEmail = "aristoscollective@gmail.com";
 export const instagramHandle = "aristoscollective";
 export const instagramUrl = `https://www.instagram.com/${instagramHandle}/`;
 
-// FormSubmit forwards each enquiry to contactEmail. The first enquiry sends an
-// activation email to that inbox; nothing is delivered until it's confirmed.
-export const enquiryEndpoint = `https://formsubmit.co/ajax/${contactEmail}`;
+// Web3Forms emails each enquiry to the inbox the access key was created for.
+// The key is public by design: it can only send messages to that inbox.
+export const enquiryEndpoint = "https://api.web3forms.com/submit";
+export const enquiryAccessKey = "2a2742ef-7370-42b1-a4a9-62b0b051d559";
 
 export const enquiryTopics = [
   "Buying a print",
