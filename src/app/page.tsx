@@ -126,9 +126,6 @@ export default function Home() {
               [A short paragraph about you — how you started, what draws you to a subject, and what
               you want people to feel when a print is on their wall.]
             </p>
-            <a href="#about" className={textLink}>
-              Read the full story
-            </a>
           </div>
         </div>
       </section>
