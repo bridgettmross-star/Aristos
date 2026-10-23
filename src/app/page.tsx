@@ -124,8 +124,9 @@ export default function Home() {
             </span>
             <h2 className={`${sectionHeading} leading-[1.15]`}>Behind the lens</h2>
             <p className="m-0 text-[17px] leading-[1.65] text-ink-body">
-              [A short paragraph about you — how you started, what draws you to a subject, and what
-              you want people to feel when a print is on their wall.]
+              Aristos (ἄριστος) is a Greek word for &ldquo;the best&rdquo;. Run by James and Bridget,
+              Aristos aims to find the best destinations in the world, capture what makes each one
+              special, and print it for your walls.
             </p>
           </div>
         </div>
