@@ -6,7 +6,22 @@ import { Placeholder } from "@/components/placeholder";
 import { PrintCard } from "@/components/print-card";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader, container } from "@/components/site-header";
+import { contactEmail, instagramUrl } from "@/lib/contact";
 import { collections, collectionsHref, prints, shopHref } from "@/lib/prints";
+import { siteDescription, siteName, siteUrl } from "@/lib/site";
+
+// Tells Google the business name, so a search for "Aristos Collective" finds this site
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteName,
+  alternateName: "Aristos",
+  url: siteUrl,
+  logo: `${siteUrl}/icon.png`,
+  email: contactEmail,
+  description: siteDescription,
+  sameAs: [instagramUrl],
+};
 
 const sectionHeading = "m-0 font-playfair text-4xl font-medium";
 const textLink = "text-[15px] text-ink hover:text-ink-muted";
@@ -29,6 +44,10 @@ const promises = [
 export default function Home() {
   return (
     <div className="w-full bg-paper font-inter text-ink">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organization).replace(/</g, "\\u003c") }}
+      />
       <SiteHeader />
 
       <section className={container}>
@@ -50,7 +69,9 @@ export default function Home() {
           />
           <div className="flex max-w-[640px] flex-col gap-5">
             <h1 className="m-0 whitespace-nowrap font-playfair text-[34px] font-medium leading-[1.05] text-white sm:text-[56px]">
-              A R I S T O S
+              {/* Screen readers and search engines read the name; the spaced letters are visual only */}
+              <span aria-hidden="true">A R I S T O S</span>
+              <span className="sr-only">Aristos Collective</span>
             </h1>
             <p className="m-0 text-[15px] font-medium tracking-[0.24em] text-hero-copy">
               FINE ART PHOTOGRAPHY
@@ -123,11 +144,6 @@ export default function Home() {
               ABOUT ARISTOS
             </span>
             <h2 className={`${sectionHeading} leading-[1.15]`}>Behind the lens</h2>
-            <p className="m-0 text-[15px] leading-[1.65] text-ink-body">
-              Aristos (ἄριστος) is a Greek word for &ldquo;the best&rdquo;. Run by James and Bridget,
-              Aristos aims to find the best destinations in the world, capture what makes each one
-              special, and print it for your walls.
-            </p>
           </div>
         </div>
       </section>

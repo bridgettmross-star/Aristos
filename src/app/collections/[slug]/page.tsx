@@ -15,7 +15,11 @@ export async function generateMetadata({
 }: PageProps<"/collections/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const collection = getCollection(slug);
-  return { title: collection ? `Aristos — ${collection.name}` : "Aristos" };
+  if (!collection) return {};
+  return {
+    title: `${collection.name} collection`,
+    openGraph: collection.cover ? { images: [{ url: collection.cover.src }] } : undefined,
+  };
 }
 
 export default async function CollectionPage({ params }: PageProps<"/collections/[slug]">) {

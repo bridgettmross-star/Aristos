@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import { siteDescription, siteName, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -15,8 +16,20 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Aristos",
-  description: "Fine art photographic prints by Aristos.",
+  metadataBase: new URL(siteUrl),
+  applicationName: siteName,
+  title: {
+    default: `${siteName} | Fine Art Travel Photography Prints`,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    siteName,
+    locale: "en_AU",
+    images: [{ url: "/images/instagram-post-1.webp", width: 618, height: 824, alt: siteName }],
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

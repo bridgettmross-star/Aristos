@@ -5,7 +5,10 @@ import { SiteHeader, container } from "@/components/site-header";
 import { contactEmail, instagramHandle, instagramUrl } from "@/lib/contact";
 import { prints } from "@/lib/prints";
 
-export const metadata: Metadata = { title: "Aristos — Contact" };
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Questions about a print, sizing or framing? Get in touch with Aristos Collective.",
+};
 
 export default function ContactPage() {
   return (

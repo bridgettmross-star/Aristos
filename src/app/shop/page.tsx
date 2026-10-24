@@ -4,7 +4,10 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader, container } from "@/components/site-header";
 import { mixedPrints } from "@/lib/prints";
 
-export const metadata: Metadata = { title: "Aristos — Shop prints" };
+export const metadata: Metadata = {
+  title: "Shop prints",
+  description: "Shop fine art travel photography prints from the Riviera, Paris and Majorca.",
+};
 
 export default function ShopPage() {
   return (

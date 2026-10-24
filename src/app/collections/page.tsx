@@ -4,7 +4,10 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader, container } from "@/components/site-header";
 import { collections } from "@/lib/prints";
 
-export const metadata: Metadata = { title: "Aristos — Collections" };
+export const metadata: Metadata = {
+  title: "Collections",
+  description: "Browse the Riviera, Paname and Balear collections of fine art travel prints.",
+};
 
 export default function CollectionsPage() {
   return (

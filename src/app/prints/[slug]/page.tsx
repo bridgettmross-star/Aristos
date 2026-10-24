@@ -26,7 +26,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/prints/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const print = getPrint(slug);
-  return { title: print ? `Aristos — ${print.title}` : "Aristos" };
+  if (!print) return {};
+  return {
+    title: `${print.title} print`,
+    description: `${print.title}: a fine art photographic print from ${print.location}, available in three sizes with optional framing.`,
+    openGraph: { images: [{ url: print.image.src, width: print.image.width, height: print.image.height }] },
+  };
 }
 
 export default async function PrintPage({ params }: PageProps<"/prints/[slug]">) {
