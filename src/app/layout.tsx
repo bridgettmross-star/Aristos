@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     images: [{ url: "/images/instagram-post-1.webp", width: 618, height: 824, alt: siteName }],
   },
   twitter: { card: "summary_large_image" },
+  verification: { google: "ijMX3FztiXXu76EOTn15CL5KVNatHcp53-qK3Mz42jQ" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
