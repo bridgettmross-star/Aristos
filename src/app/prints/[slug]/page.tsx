@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps<"/prints/[slug]">):
   if (!print) return {};
   return {
     title: `${print.title} print`,
-    description: `${print.title}: a fine art photographic print from ${print.location}, available in three sizes with optional framing.`,
+    description: `${print.title}: a fine art photographic print from ${print.location}, available in A4 to A1 with optional framing.`,
     openGraph: { images: [{ url: print.image.src, width: print.image.width, height: print.image.height }] },
   };
 }

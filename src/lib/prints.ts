@@ -59,9 +59,10 @@ export const collections: Collection[] = [
 ];
 
 const sizes: SizeOption[] = [
-  { id: "s", label: "45 × 60 cm", price: 300 },
-  { id: "m", label: "60 × 80 cm" },
-  { id: "l", label: "90 × 120 cm" },
+  { id: "a4", label: "A4 · 21 × 29.7 cm", price: 300 },
+  { id: "a3", label: "A3 · 29.7 × 42 cm" },
+  { id: "a2", label: "A2 · 42 × 59.4 cm" },
+  { id: "a1", label: "A1 · 59.4 × 84.1 cm" },
 ];
 
 const papers: Option[] = [
