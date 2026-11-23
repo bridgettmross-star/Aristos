@@ -22,7 +22,6 @@ export type Print = {
   image: Photo & { width: number; height: number };
   details: Photo[];
   sizes: SizeOption[];
-  papers: Option[];
   frames: Option[];
 };
 
@@ -65,15 +64,11 @@ const sizes: SizeOption[] = [
   { id: "a1", label: "A1 · 59.4 × 84.1 cm" },
 ];
 
-const papers: Option[] = [
-  { id: "rag", label: "Cotton rag, matte" },
-  { id: "baryta", label: "Baryta, satin" },
-];
-
 const frames: Option[] = [
   { id: "none", label: "Unframed" },
-  { id: "black", label: "Black, white mat" },
-  { id: "oak", label: "Oak, white mat" },
+  { id: "black", label: "Black frame" },
+  { id: "white", label: "White frame" },
+  { id: "timber", label: "Timber frame" },
 ];
 
 export const prints: Print[] = [
@@ -101,7 +96,6 @@ export const prints: Print[] = [
       },
     ],
     sizes,
-    papers,
     frames,
   },
   {
@@ -128,7 +122,6 @@ export const prints: Print[] = [
       },
     ],
     sizes,
-    papers,
     frames,
   },
   {
@@ -155,7 +148,6 @@ export const prints: Print[] = [
       },
     ],
     sizes,
-    papers,
     frames,
   },
   {
@@ -183,7 +175,6 @@ export const prints: Print[] = [
       },
     ],
     sizes,
-    papers,
     frames,
   },
   {
@@ -210,7 +201,6 @@ export const prints: Print[] = [
       },
     ],
     sizes,
-    papers,
     frames,
   },
   {
@@ -237,7 +227,6 @@ export const prints: Print[] = [
       },
     ],
     sizes,
-    papers,
     frames,
   },
   {
@@ -265,7 +254,6 @@ export const prints: Print[] = [
       },
     ],
     sizes,
-    papers,
     frames,
   },
   {
@@ -293,7 +281,6 @@ export const prints: Print[] = [
       },
     ],
     sizes,
-    papers,
     frames,
   },
 ];

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { formatPrice, type Option, type Print } from "@/lib/prints";
 
-type Selection = { size: string; paper: string; frame: string };
+type Selection = { size: string; frame: string };
 
 function labelFor(options: Option[], id: string) {
   return options.find((option) => option.id === id)?.label ?? "";
@@ -50,7 +50,6 @@ function OptionGroup({
 export function PrintPurchase({ print }: { print: Print }) {
   const [selection, setSelection] = useState<Selection>({
     size: print.sizes[0].id,
-    paper: print.papers[0].id,
     frame: print.frames[0].id,
   });
   const [added, setAdded] = useState(false);
@@ -66,7 +65,6 @@ export function PrintPurchase({ print }: { print: Print }) {
   const price = print.sizes.find((option) => option.id === selection.size)?.price;
   const summary = [
     size,
-    labelFor(print.papers, selection.paper),
     labelFor(print.frames, selection.frame),
   ].join(" · ");
 
@@ -90,7 +88,6 @@ export function PrintPurchase({ print }: { print: Print }) {
       </div>
 
       <OptionGroup legend="Size" options={print.sizes} value={selection.size} onChange={choose("size")} />
-      <OptionGroup legend="Paper" options={print.papers} value={selection.paper} onChange={choose("paper")} />
       <OptionGroup legend="Framing" options={print.frames} value={selection.frame} onChange={choose("frame")} />
 
       <div className="flex flex-col gap-3">

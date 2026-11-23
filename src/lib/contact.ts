@@ -10,7 +10,7 @@ export const enquiryAccessKey = "2a2742ef-7370-42b1-a4a9-62b0b051d559";
 
 export const enquiryTopics = [
   "Buying a print",
-  "Sizes, paper or framing",
+  "Sizes or framing",
   "Commission or licensing",
   "Something else",
 ];
